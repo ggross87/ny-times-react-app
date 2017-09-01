@@ -18,8 +18,14 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(express.static('./public'));
 
 //connecting to MongoDB
-mongoose.connect("mongodb://localhost/nyt_articles");
-var db = mongoose.connection;
+var databaseUri = 'mongodb://heroku_lb9cxp3z:o9mfpq8b09cd7ujrs12vvhsjn8@ds115124.mlab.com:15124/heroku_lb9cxp3z';
+
+if (process.env.MONGODB_URI) {
+  mongoose.connect(process.env.MONGODB_URI);
+} else {
+  mongoose.connect(databaseUri);
+}
+
 
 db.on('error', function(err){
   console.log("Mongoose Error: " + err);
