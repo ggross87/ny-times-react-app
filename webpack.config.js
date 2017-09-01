@@ -8,7 +8,7 @@ module.exports = {
       {
         test : /\.jsx?/,
         include : /app/,
-        loader : "babel",
+        loader : "babel-loader",
         query: {
           babelrc: false,
           // These are the specific transformations we'll be using.
